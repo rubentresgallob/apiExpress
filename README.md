@@ -2,7 +2,7 @@
 
 ## Por este medio se orienta la actividad colaborativa "Api-Express", a partir de una plantilla dada por el profesor. La actividad consiste en:
 
-1) Crear  equipos de  4 estudiantes para el desarrollo de una api utilizando Express y MongoDb.
+1) Los equipos desarrollaran un api utilizando Express y MongoDb.
 
 2) Cada equipo debe tener su proyecto en GitHub para trabajar de forma colaborativa.
 
