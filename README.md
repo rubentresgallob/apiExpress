@@ -24,15 +24,15 @@ Estas son las divisiones del proyecto, cabe recalcar que tuvimos un error al hac
 
 Los archivos principales fueron en mayor medida realizados por todos los integrantes:
 
-Liam Anderson: La configuración del servidor (índex) y conexión a mongoDB y las rutas, modelos y lógica de Tasks.
+- Liam Anderson: La configuración del servidor (índex) y conexión a mongoDB y las rutas, modelos y lógica de Tasks.
 
-Rubén Tresgallo: El diseño gráfico e interfaz que consiste en hacer las vistas parciales, principales, estilos personalizados y boostrap además de asistir en la creación todos los archivos principales.
+- Rubén Tresgallo: El diseño gráfico e interfaz que consiste en hacer las vistas parciales, principales, estilos personalizados y boostrap además de asistir en la creación todos los archivos principales.
 
-Pablo Rey: El archivo principal (App) y las rutas, modelos y lógica de Habits fueron.
+- Pablo Rey: El archivo principal (App) y las rutas, modelos y lógica de Habits fueron.
 
-Javier Rodríguez: Ruta modelo y lógica para Users y diseño y creación de la Documentación.
+- Javier Rodríguez: Ruta modelo y lógica para Users y diseño y creación de la Documentación.
 
-Hector Ares: Organización de la estructura del proyecto y configuración de archivos estáticos.
+- Hector Ares: Organización de la estructura del proyecto y configuración de archivos estáticos.
 
 Archivos principales entre todos.
 
@@ -40,14 +40,14 @@ Archivos principales entre todos.
 
 Constactos de los integrantes del proyecto:
 
-Liam: liam.anderson@alumnos.uneatlantico.es
+- Liam: liam.anderson@alumnos.uneatlantico.es
 
-Rubén: ruben.tresgallo@alumnos.uneatlantico.es
+- Rubén: ruben.tresgallo@alumnos.uneatlantico.es
 
-Pablo: pablo.reyortiz@alumnos.uneatlantico.es
+- Pablo: pablo.reyortiz@alumnos.uneatlantico.es
 
-Javier: javier.rodriguez4@alumnos.uneatlantico.es
+- Javier: javier.rodriguez4@alumnos.uneatlantico.es
 
-Hector: hector.ares@alumnos.uneatlantico.es
+- Hector: hector.ares@alumnos.uneatlantico.es
 
 ¡Muchas gracias por su atención!
