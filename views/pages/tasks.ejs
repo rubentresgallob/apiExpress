@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+  <%- include('../partials/head', { title: 'Gestión de Tareas' }) %>
+  <body>
+    <%- include('../partials/header') %>
+    <main>
+      <h2>Tareas</h2>
+      <form action="/tasks" method="POST">
+        <input type="text" name="title" placeholder="Nueva tarea..." required>
+        <button type="submit">Agregar</button>
+      </form>
+      <ul>
+        <% tasks.forEach(task => { %>
+          <li>
+            <%= task.title %>
+            <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" style="display:inline;">
+              <button type="submit">Eliminar</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+    </main>
+    <%- include('../partials/footer') %>
+  </body>
+</html>
