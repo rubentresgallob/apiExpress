@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
   const task = new Task({
     title: req.body.title,
     description: req.body.description,
-    completed: req.body.completed || false,
+    completed: req.body.completed === 'true', // Convertir el valor a booleano
   });
 
   try {
@@ -25,6 +25,19 @@ router.post('/', async (req, res) => {
     res.redirect('/tasks');
   } catch (err) {
     res.status(400).render('pages/error', { title: 'Error', message: 'Error al añadir la tarea' });
+  }
+});
+
+// DELETE eliminar una tarea
+router.delete('/:id', async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id);
+    if (!task) return res.status(404).render('pages/error', { title: 'Error', message: 'Tarea no encontrada' });
+
+    await task.deleteOne();
+    res.redirect('/tasks');
+  } catch (err) {
+    res.status(500).render('pages/error', { title: 'Error', message: 'Error al eliminar la tarea' });
   }
 });
 

@@ -5,22 +5,55 @@
 </head>
 <body>
   <%- include('../partials/header') %>
-  <main>
-    <h1><%= title %></h1>
-    <form action="/tasks" method="POST">
-      <label for="title">Título:</label>
-      <input type="text" id="title" name="title" required>
-      <label for="description">Descripción:</label>
-      <textarea id="description" name="description" required></textarea>
-      <label for="completed">Completada:</label>
-      <input type="checkbox" id="completed" name="completed">
-      <button type="submit">Añadir Tarea</button>
-    </form>
-    <ul>
-      <% tasks.forEach(task => { %>
-        <li><%= task.title %>: <%= task.description %> (<%= task.completed ? 'Completada' : 'Pendiente' %>)</li>
-      <% }) %>
-    </ul>
+  <main class="container">
+    <h1 class="my-4"><%= title %></h1>
+
+    <!-- Formulario para añadir tarea -->
+    <div class="card mb-4">
+      <div class="card-header bg-primary text-white">Añadir Nueva Tarea</div>
+      <div class="card-body">
+        <form action="/tasks" method="POST">
+          <div class="mb-3">
+            <label for="title" class="form-label">Título:</label>
+            <input type="text" id="title" name="title" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Descripción:</label>
+            <textarea id="description" name="description" class="form-control" required></textarea>
+          </div>
+          <div class="form-check mb-3">
+            <input type="checkbox" id="completed" name="completed" value="true" class="form-check-input">
+            <label for="completed" class="form-check-label">Completada</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Añadir Tarea</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Lista de tareas -->
+    <h2 class="my-4">Tareas Existentes</h2>
+    <% if (tasks && tasks.length > 0) { %>
+      <div class="row">
+        <% tasks.forEach(task => { %>
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title"><%= task.title %></h5>
+                <p class="card-text"><%= task.description %></p>
+                <p class="card-text">
+                  <small class="text-muted">Estado: <%= task.completed ? 'Completada' : 'Pendiente' %></small>
+                </p>
+                <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" class="d-inline">
+                  <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <p class="text-muted">No hay tareas disponibles.</p>
+    <% } %>
   </main>
   <%- include('../partials/footer') %>
 </body>

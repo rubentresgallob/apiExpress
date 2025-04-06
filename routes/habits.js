@@ -29,4 +29,17 @@ router.post('/', async (req, res) => {
   }
 });
 
+// DELETE eliminar un hábito
+router.delete('/:id', async (req, res) => {
+  try {
+    const habit = await Habit.findById(req.params.id);
+    if (!habit) return res.status(404).render('pages/error', { title: 'Error', message: 'Hábito no encontrado' });
+
+    await habit.deleteOne();
+    res.redirect('/habits');
+  } catch (err) {
+    res.status(500).render('pages/error', { title: 'Error', message: 'Error al eliminar el hábito' });
+  }
+});
+
 module.exports = router;
