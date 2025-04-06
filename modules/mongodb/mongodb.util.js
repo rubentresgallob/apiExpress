@@ -11,9 +11,9 @@
 
     function init() {
         var options = {
-            promiseLibrary: require('bluebird'),
+            // Se eliminó la opción obsoleta promiseLibrary
             useNewUrlParser: true,
-			useUnifiedTopology: true 
+            useUnifiedTopology: true 
         };
 
         var connectionString = prepareConnectionString(mongodbConfig);
