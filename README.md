@@ -8,15 +8,15 @@ El objetivo del proyecto es desarrollar una API utilizando Express y MongoDB, ap
 
 ### Integrantes del Equipo
 
-Liam Anderson
+- **Liam Anderson**
 
-Rubén Tresgallo
+- **Rubén Tresgallo**
 
-Pablo Rey
+- **Pablo Rey**
 
-Javier Rodríguez
+- **Javier Rodríguez**
 
-Hector Ares
+- **Hector Ares**
 
 ### Contribuciones
 
