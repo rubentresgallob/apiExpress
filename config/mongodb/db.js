@@ -1,13 +1,18 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://127.0.0.1:27017/tareas_habitos_pro', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-  // Se eliminaron las opciones obsoletas:
-  // useFindAndModify: false,
-  // useCreateIndex: true
-})
-.then(() => console.log('✅ Conectado a MongoDB'))
-.catch((err) => console.error('❌ Error conectando a MongoDB:', err));
+// Función para conectar a MongoDB
+const connectDB = async () => {
+  try {
+    await mongoose.connect('mongodb://127.0.0.1:27017/tareas_habitos_pro', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('✅ Conectado a MongoDB');
+  } catch (err) {
+    console.error('❌ Error conectando a MongoDB:', err);
+    process.exit(1); // Salir del proceso si no se puede conectar
+  }
+};
 
-module.exports = mongoose;
+// Exportar la función
+module.exports = connectDB;

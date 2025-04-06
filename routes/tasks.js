@@ -4,89 +4,72 @@ const Task = require('../models/Task');
 
 // GET todas las tareas
 router.get('/', async (req, res) => {
-    try {
-        const tasks = await Task.find();
-        res.json(tasks);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-
-// GET tareas por usuario
-router.get('/user/:userId', async (req, res) => {
-    try {
-        const tasks = await Task.find({ userId: req.params.userId });
-        res.json(tasks);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
+  try {
+    const tasks = await Task.find();
+    res.render('pages/tasks', { title: 'Lista de Tareas', tasks });
+  } catch (err) {
+    res.status(500).render('pages/error', { title: 'Error', message: err.message });
+  }
 });
 
 // GET una tarea por ID
 router.get('/:id', async (req, res) => {
-    try {
-        const task = await Task.findById(req.params.id);
-        if (!task) return res.status(404).json({ message: 'Tarea no encontrada' });
-        res.json(task);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
+  try {
+    const task = await Task.findById(req.params.id);
+    if (!task) return res.status(404).render('pages/error', { title: 'Error', message: 'Tarea no encontrada' });
+    res.render('pages/task', { title: 'Detalles de la Tarea', task });
+  } catch (err) {
+    res.status(500).render('pages/error', { title: 'Error', message: err.message });
+  }
 });
 
-// POST crear tarea
+// POST crear una nueva tarea
 router.post('/', async (req, res) => {
-    const task = new Task({
-        userId: req.body.userId,
-        category: req.body.category,
-        title: req.body.title,
-        description: req.body.description,
-        dueDate: req.body.dueDate,
-        priority: req.body.priority,
-        tags: req.body.tags,
-        translations: req.body.translations
+  const task = new Task({
+    title: req.body.title,
+    description: req.body.description,
+    completed: req.body.completed || false,
+  });
+
+  try {
+    const newTask = await task.save();
+    res.status(201).redirect('/tasks');
+  } catch (err) {
+    res.status(400).render('pages/error', { title: 'Error', message: err.message });
+  }
+});
+
+// PUT actualizar una tarea
+router.put('/:id', async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id);
+    if (!task) return res.status(404).render('pages/error', { title: 'Error', message: 'Tarea no encontrada' });
+
+    // Actualizar campos
+    Object.keys(req.body).forEach((key) => {
+      if (key !== '_id' && key !== 'createdAt') {
+        task[key] = req.body[key];
+      }
     });
 
-    try {
-        const newTask = await task.save();
-        res.status(201).json(newTask);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
+    const updatedTask = await task.save();
+    res.redirect('/tasks');
+  } catch (err) {
+    res.status(400).render('pages/error', { title: 'Error', message: err.message });
+  }
 });
 
-// PUT actualizar tarea
-router.put('/:id', async (req, res) => {
-    try {
-        const task = await Task.findById(req.params.id);
-        if (!task) return res.status(404).json({ message: 'Tarea no encontrada' });
-        
-        // Actualizar campos
-        Object.keys(req.body).forEach(key => {
-            if (key !== '_id' && key !== 'createdAt') {
-                task[key] = req.body[key];
-            }
-        });
-        
-        task.updatedAt = Date.now();
-        
-        const updatedTask = await task.save();
-        res.json(updatedTask);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
-});
-
-// DELETE eliminar tarea
+// DELETE eliminar una tarea
 router.delete('/:id', async (req, res) => {
-    try {
-        const task = await Task.findById(req.params.id);
-        if (!task) return res.status(404).json({ message: 'Tarea no encontrada' });
-        
-        await task.deleteOne();
-        res.json({ message: 'Tarea eliminada' });
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
+  try {
+    const task = await Task.findById(req.params.id);
+    if (!task) return res.status(404).render('pages/error', { title: 'Error', message: 'Tarea no encontrada' });
+
+    await task.deleteOne();
+    res.redirect('/tasks');
+  } catch (err) {
+    res.status(500).render('pages/error', { title: 'Error', message: err.message });
+  }
 });
 
 module.exports = router;

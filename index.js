@@ -1,19 +1,46 @@
 const express = require('express');
-const mongoose = require('./config/mongodb/db');
+const path = require('path');
+const connectDB = require('./config/mongodb/db');
 const taskRoutes = require('./routes/tasks');
+const habitRoutes = require('./routes/habits');
+
 const app = express();
+const port = 3000;
 
+// Conectar a MongoDB
+connectDB();
+
+// Configurar EJS como motor de vistas
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+// Middleware para parsear JSON y servir archivos estáticos
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Ruta de prueba para '/'
+// Página de inicio
 app.get('/', (req, res) => {
-  res.send('¡Hola desde Express + MongoDB!');
+  res.render('pages/home', { title: 'Inicio' });
 });
 
-// Ruta para '/tasks'
+// Rutas para tareas
 app.use('/tasks', taskRoutes);
 
-app.listen(3000, () => {
-  console.log('Servidor corriendo en el puerto 3000');
+// Rutas para hábitos
+app.use('/habits', habitRoutes);
+
+// Ruta para búsqueda de hábitos (habitSearch.ejs)
+app.get('/habitSearch', (req, res) => {
+  res.render('pages/habitSearch', { title: 'Buscar Hábitos' });
 });
 
+// Ruta de error genérica
+app.use((req, res) => {
+  res.status(404).render('pages/error', { title: 'Error 404', message: 'Página no encontrada' });
+});
+
+// Iniciar servidor
+app.listen(port, () => {
+  console.log(`Servidor corriendo en http://localhost:${port}`);
+});
