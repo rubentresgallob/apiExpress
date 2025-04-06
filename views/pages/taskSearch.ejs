@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+  <%- include('../partials/head', { title: 'Buscar Tareas' }) %>
+  <body>
+    <%- include('../partials/header') %>
+    <main>
+      <h2>Buscar Tareas</h2>
+      <form action="/tasks/search" method="GET">
+        <input type="text" name="q" placeholder="Buscar tarea...">
+        <button type="submit">Buscar</button>
+      </form>
+      <ul>
+        <% results.forEach(task => { %>
+          <li><%= task.title %></li>
+        <% }) %>
+      </ul>
+    </main>
+    <%- include('../partials/footer') %>
+  </body>
+</html>
