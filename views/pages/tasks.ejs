@@ -2,94 +2,26 @@
 <html lang="en">
 <head>
   <%- include('../partials/head') %>
-  <style>
-    .task-list {
-      margin: 20px 0;
-    }
-    .task-item {
-      background: #f9f9f9;
-      padding: 15px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-    }
-    .task-form {
-      background: #fff;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    .btn {
-      padding: 8px 15px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .btn-primary {
-      background: #007bff;
-      color: white;
-    }
-  </style>
 </head>
 <body>
   <%- include('../partials/header') %>
-  
-  <main class="container">
+  <main>
     <h1><%= title %></h1>
-
-    <!-- Formulario para añadir tarea -->
-    <div class="task-form">
-      <h2>Añadir Nueva Tarea</h2>
-      <form action="/tasks" method="POST">
-        <div class="form-group">
-          <label for="title">Título:</label>
-          <input type="text" id="title" name="title" required class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="description">Descripción:</label>
-          <textarea id="description" name="description" required class="form-control"></textarea>
-        </div>
-
-        <div class="form-group">
-          <label>
-            <input type="checkbox" name="completed">
-            Completada
-          </label>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Añadir Tarea</button>
-      </form>
-    </div>
-
-    <!-- Lista de tareas -->
-    <div class="task-list">
-      <h2>Tareas Existentes</h2>
-      <% if (tasks && tasks.length > 0) { %>
-        <% tasks.forEach(task => { %>
-          <div class="task-item">
-            <h3><%= task.title %></h3>
-            <p><%= task.description %></p>
-            <p>Estado: <%= task.completed ? 'Completada' : 'Pendiente' %></p>
-            
-            <!-- Formulario para eliminar tarea -->
-            <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" style="display: inline;">
-              <button type="submit" class="btn btn-danger">Eliminar</button>
-            </form>
-            
-            <!-- Enlace para editar tarea -->
-            <a href="/tasks/<%= task._id %>" class="btn btn-info">Ver Detalles</a>
-          </div>
-        <% }); %>
-      <% } else { %>
-        <p>No hay tareas disponibles.</p>
-      <% } %>
-    </div>
+    <form action="/tasks" method="POST">
+      <label for="title">Título:</label>
+      <input type="text" id="title" name="title" required>
+      <label for="description">Descripción:</label>
+      <textarea id="description" name="description" required></textarea>
+      <label for="completed">Completada:</label>
+      <input type="checkbox" id="completed" name="completed">
+      <button type="submit">Añadir Tarea</button>
+    </form>
+    <ul>
+      <% tasks.forEach(task => { %>
+        <li><%= task.title %>: <%= task.description %> (<%= task.completed ? 'Completada' : 'Pendiente' %>)</li>
+      <% }) %>
+    </ul>
   </main>
-
   <%- include('../partials/footer') %>
 </body>
 </html>

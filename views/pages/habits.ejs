@@ -2,97 +2,28 @@
 <html lang="en">
 <head>
   <%- include('../partials/head') %>
-  <style>
-    .habit-list {
-      margin: 20px 0;
-    }
-    .habit-item {
-      background: #f9f9f9;
-      padding: 15px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-    }
-    .habit-form {
-      background: #fff;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    .btn {
-      padding: 8px 15px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .btn-primary {
-      background: #007bff;
-      color: white;
-    }
-  </style>
 </head>
 <body>
   <%- include('../partials/header') %>
-  
-  <main class="container">
+  <main>
     <h1><%= title %></h1>
-
-    <!-- Formulario para añadir hábito -->
-    <div class="habit-form">
-      <h2>Añadir Nuevo Hábito</h2>
-      <form action="/habits" method="POST">
-        <div class="form-group">
-          <label for="name">Nombre:</label>
-          <input type="text" id="name" name="name" required class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="frequency">Frecuencia:</label>
-          <input type="text" id="frequency" name="frequency" required class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="goalPerPeriod">Meta por período:</label>
-          <input type="number" id="goalPerPeriod" name="goalPerPeriod" required class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="unit">Unidad:</label>
-          <input type="text" id="unit" name="unit" required class="form-control">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Añadir Hábito</button>
-      </form>
-    </div>
-
-    <!-- Lista de hábitos -->
-    <div class="habit-list">
-      <h2>Hábitos Existentes</h2>
-      <% if (habits && habits.length > 0) { %>
-        <% habits.forEach(habit => { %>
-          <div class="habit-item">
-            <h3><%= habit.name %></h3>
-            <p>Frecuencia: <%= habit.frequency %></p>
-            <p>Meta: <%= habit.goalPerPeriod %> <%= habit.unit %></p>
-            
-            <!-- Formulario para eliminar hábito -->
-            <form action="/habits/<%= habit._id %>?_method=DELETE" method="POST" style="display: inline;">
-              <button type="submit" class="btn btn-danger">Eliminar</button>
-            </form>
-            
-            <!-- Enlace para editar hábito -->
-            <a href="/habits/<%= habit._id %>" class="btn btn-info">Ver Detalles</a>
-          </div>
-        <% }); %>
-      <% } else { %>
-        <p>No hay hábitos disponibles.</p>
-      <% } %>
-    </div>
+    <form action="/habits" method="POST">
+      <label for="name">Nombre:</label>
+      <input type="text" id="name" name="name" required>
+      <label for="frequency">Frecuencia:</label>
+      <input type="text" id="frequency" name="frequency" required>
+      <label for="goalPerPeriod">Meta por período:</label>
+      <input type="number" id="goalPerPeriod" name="goalPerPeriod" required>
+      <label for="unit">Unidad:</label>
+      <input type="text" id="unit" name="unit" required>
+      <button type="submit">Añadir Hábito</button>
+    </form>
+    <ul>
+      <% habits.forEach(habit => { %>
+        <li><%= habit.name %>: <%= habit.frequency %> (<%= habit.goalPerPeriod %> <%= habit.unit %>)</li>
+      <% }) %>
+    </ul>
   </main>
-
   <%- include('../partials/footer') %>
 </body>
 </html>

@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Inicio | Tareas y Hábitos</title>
-  <link rel="stylesheet" href="/styles.css">
+  <%- include('../partials/head') %>
 </head>
 <body>
-  <h1>Bienvenido a la App de Tareas y Hábitos</h1>
-  <nav>
-    <a href="/views/task.html">Tareas</a> |
-    <a href="/views/habit.html">Hábitos</a>
-  </nav>
+  <%- include('../partials/header') %>
+  <main>
+    <h1>Bienvenido a la App de Tareas y Hábitos</h1>
+    <p>Selecciona una opción del menú para continuar.</p>
+  </main>
+  <%- include('../partials/footer') %>
 </body>
 </html>
