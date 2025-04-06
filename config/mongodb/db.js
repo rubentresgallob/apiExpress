@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/habits_db', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Conectado a MongoDB'))
-  .catch(err => console.log(err));
+mongoose.connect('mongodb://127.0.0.1:27017/tareas_habitos_pro', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true
+})
+.then(() => console.log('✅ Conectado a MongoDB'))
+.catch((err) => console.error('❌ Error conectando a MongoDB:', err));
 
 module.exports = mongoose;
