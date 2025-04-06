@@ -25,10 +25,10 @@ Archivos principales entre todos.
 Contacto
 Constactos de los integrantes del proyecto:
 
-Liam: liam.anderson@gmail.com
-Rubén: ruben.tresgallo@gmail.com
-Pablo: pablo.reyortiz@gmail.com
-Javier: javier.rodriguez4@gmail.com
-Hector: hector.ares@gmail.com
+Liam: liam.anderson@alumnos.uneatlantico.es
+Rubén: ruben.tresgallo@alumnos.uneatlantico.es
+Pablo: pablo.reyortiz@alumnos.uneatlantico.es
+Javier: javier.rodriguez4@alumnos.uneatlantico.es
+Hector: hector.ares@alumnos.uneatlantico.es
 
 ¡Muchas gracias por su atención!
