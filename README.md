@@ -1,12 +1,12 @@
-DOCUMENTACIÓN
-
+#DOCUMENTACIÓN
+---
 Este repositorio contiene el código y la documentación de este proyecto de Bases de Datos II de la carrera de Ingeniería Informática en la Universidad Europea del Atlántico.
 
-Descripción del Proyecto
+##Descripción del Proyecto
 
 El objetivo del proyecto es desarrollar una API utilizando Express y MongoDB, aplicando los conceptos y técnicas aprendidos en la asignatura de Bases de Datos 2. El enfoque principal está en el trabajo con bases de datos, incluyendo el manejo de colecciones, la implementación de agregaciones, la creación de índices, y la gestión de relaciones entre datos, entre otros aspectos clave.
 
-Integrantes del Equipo
+###Integrantes del Equipo
 
 Liam Anderson
 
@@ -18,7 +18,7 @@ Javier Rodríguez
 
 Hector Ares
 
-Contribuciones
+###Contribuciones
 
 Estas son las divisiones del proyecto, cabe recalcar que tuvimos un error al hacer el merge de cada las ramas al main por lo cual decidimos subir todos los cambios atraves de integrante Liam Anderson
 
@@ -36,7 +36,7 @@ Hector Ares: Organización de la estructura del proyecto y configuración de arc
 
 Archivos principales entre todos.
 
-Contacto
+##Contacto:
 
 Constactos de los integrantes del proyecto:
 
