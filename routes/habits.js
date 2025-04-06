@@ -46,7 +46,6 @@ router.put('/:id', async (req, res) => {
     const habit = await Habit.findById(req.params.id);
     if (!habit) return res.status(404).render('pages/error', { title: 'Error', message: 'Hábito no encontrado' });
 
-    // Actualizar campos
     Object.keys(req.body).forEach((key) => {
       if (key !== '_id' && key !== 'createdAt') {
         habit[key] = req.body[key];

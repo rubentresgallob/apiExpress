@@ -45,7 +45,6 @@ router.put('/:id', async (req, res) => {
     const task = await Task.findById(req.params.id);
     if (!task) return res.status(404).render('pages/error', { title: 'Error', message: 'Tarea no encontrada' });
 
-    // Actualizar campos
     Object.keys(req.body).forEach((key) => {
       if (key !== '_id' && key !== 'createdAt') {
         task[key] = req.body[key];

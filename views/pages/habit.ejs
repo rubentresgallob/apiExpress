@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head') %>
+  <style>
+    .habit-details {
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .btn {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    .btn-primary {
+      background: #007bff;
+      color: white;
+    }
+    .btn-secondary {
+      background: #6c757d;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <%- include('../partials/header') %>
+  
+  <main class="container">
+    <h1>Detalles del Hábito</h1>
+
+    <div class="habit-details">
+      <form action="/habits/<%= habit._id %>?_method=PUT" method="POST">
+        <div class="form-group">
+          <label for="name">Nombre:</label>
+          <input type="text" id="name" name="name" value="<%= habit.name %>" required class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="frequency">Frecuencia:</label>
+          <input type="text" id="frequency" name="frequency" value="<%= habit.frequency %>" required class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="goalPerPeriod">Meta por período:</label>
+          <input type="number" id="goalPerPeriod" name="goalPerPeriod" value="<%= habit.goalPerPeriod %>" required class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="unit">Unidad:</label>
+          <input type="text" id="unit" name="unit" value="<%= habit.unit %>" required class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Actualizar Hábito</button>
+        <a href="/habits" class="btn btn-secondary">Volver a la lista</a>
+      </form>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

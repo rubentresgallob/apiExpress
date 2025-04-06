@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/user.model'); // Asegúrate de que el modelo esté correctamente definido
+const User = require('../models/user.model');
 
 // GET todos los usuarios
 router.get('/', async (req, res) => {
@@ -28,12 +28,12 @@ router.post('/', async (req, res) => {
   const user = new User({
     name: req.body.name,
     email: req.body.email,
-    password: req.body.password, // Asegúrate de manejar contraseñas de forma segura (hashing)
+    password: req.body.password,
   });
 
   try {
     const newUser = await user.save();
-    res.status(201).redirect('/users'); // Redirige a la lista de usuarios después de crear uno nuevo
+    res.status(201).redirect('/users');
   } catch (err) {
     res.status(400).render('pages/error', { title: 'Error', message: err.message });
   }
@@ -45,7 +45,6 @@ router.put('/:id', async (req, res) => {
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).render('pages/error', { title: 'Error', message: 'Usuario no encontrado' });
 
-    // Actualizar campos
     Object.keys(req.body).forEach((key) => {
       if (key !== '_id' && key !== 'createdAt') {
         user[key] = req.body[key];
@@ -53,7 +52,7 @@ router.put('/:id', async (req, res) => {
     });
 
     const updatedUser = await user.save();
-    res.redirect('/users'); // Redirige a la lista de usuarios después de actualizar
+    res.redirect('/users');
   } catch (err) {
     res.status(400).render('pages/error', { title: 'Error', message: err.message });
   }
@@ -66,7 +65,7 @@ router.delete('/:id', async (req, res) => {
     if (!user) return res.status(404).render('pages/error', { title: 'Error', message: 'Usuario no encontrado' });
 
     await user.deleteOne();
-    res.redirect('/users'); // Redirige a la lista de usuarios después de eliminar
+    res.redirect('/users');
   } catch (err) {
     res.status(500).render('pages/error', { title: 'Error', message: err.message });
   }
